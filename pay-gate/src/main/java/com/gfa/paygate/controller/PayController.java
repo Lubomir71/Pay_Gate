@@ -21,7 +21,9 @@ public class PayController {
     @PostMapping("/pay-gate")
     public ResponseEntity<Object> payment(@RequestBody @Valid CardDataDTO cardData){
         Map<String, String> responseMap = new HashMap<>();
-        responseMap.put("status", payService.payment(cardData));
+        String response = payService.payment(cardData);
+        responseMap.put("status", response);
+        if (response.equals("payment was rejected")) return new ResponseEntity<>(responseMap, HttpStatus.FORBIDDEN);
         return new ResponseEntity<>(responseMap, HttpStatus.OK);
     }
 
