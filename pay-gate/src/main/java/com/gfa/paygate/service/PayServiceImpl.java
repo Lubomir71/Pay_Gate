@@ -18,7 +18,7 @@ public class PayServiceImpl implements PayService{
         int year = Integer.parseInt("20" + validSplit[1]);
         if (YearMonth.of(year,month).isBefore(YearMonth.now())) throw new IllegalStateException("your card is not valid");
         int rnd = new Random().nextInt(100);
-        String returnString = rnd < Integer.parseInt(System.getenv("PROBABILITY")) ?
+        String returnString = rnd < 90 ?
                 "payment was accepted": "payment was rejected";
         return returnString;
     }
