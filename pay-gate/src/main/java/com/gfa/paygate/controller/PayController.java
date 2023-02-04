@@ -23,7 +23,7 @@ public class PayController {
         Map<String, String> responseMap = new HashMap<>();
         String response = payService.payment(cardData);
         responseMap.put("status", response);
-        if (response.equals("payment rejected")) return new ResponseEntity<>(responseMap, HttpStatus.FORBIDDEN);
+        if (response.equals("payment rejected")) return new ResponseEntity<>(responseMap, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
         return new ResponseEntity<>(responseMap, HttpStatus.OK);
     }
 
